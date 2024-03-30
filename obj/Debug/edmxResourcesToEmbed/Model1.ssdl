@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище KINOPROKATPRACTICAModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="COUNTRY">
+    <Key>
+      <PropertyRef Name="ID_Country" />
+    </Key>
+    <Property Name="ID_Country" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Namee" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DIRECTOR">
+    <Key>
+      <PropertyRef Name="ID_Director" />
+    </Key>
+    <Property Name="ID_Director" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Country_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__DIRECTOR__Countr__4E88ABD4">
+    <End Role="COUNTRY" Type="Self.COUNTRY" Multiplicity="1" />
+    <End Role="DIRECTOR" Type="Self.DIRECTOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COUNTRY">
+        <PropertyRef Name="ID_Country" />
+      </Principal>
+      <Dependent Role="DIRECTOR">
+        <PropertyRef Name="Country_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище KINOPROKATPRACTICAModelContainer">
+    <EntitySet Name="COUNTRY" EntityType="Self.COUNTRY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DIRECTOR" EntityType="Self.DIRECTOR" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__DIRECTOR__Countr__4E88ABD4" Association="Self.FK__DIRECTOR__Countr__4E88ABD4">
+      <End Role="COUNTRY" EntitySet="COUNTRY" />
+      <End Role="DIRECTOR" EntitySet="DIRECTOR" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

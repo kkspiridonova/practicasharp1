@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище KINOPROKATPRACTICAModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="COUNTRY">
+          <Key>
+            <PropertyRef Name="ID_Country" />
+          </Key>
+          <Property Name="ID_Country" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Namee" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DIRECTOR">
+          <Key>
+            <PropertyRef Name="ID_Director" />
+          </Key>
+          <Property Name="ID_Director" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Country_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__DIRECTOR__Countr__4E88ABD4">
+          <End Role="COUNTRY" Type="Self.COUNTRY" Multiplicity="1" />
+          <End Role="DIRECTOR" Type="Self.DIRECTOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COUNTRY">
+              <PropertyRef Name="ID_Country" />
+            </Principal>
+            <Dependent Role="DIRECTOR">
+              <PropertyRef Name="Country_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище KINOPROKATPRACTICAModelContainer">
+          <EntitySet Name="COUNTRY" EntityType="Self.COUNTRY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DIRECTOR" EntityType="Self.DIRECTOR" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__DIRECTOR__Countr__4E88ABD4" Association="Self.FK__DIRECTOR__Countr__4E88ABD4">
+            <End Role="COUNTRY" EntitySet="COUNTRY" />
+            <End Role="DIRECTOR" EntitySet="DIRECTOR" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KINOPROKATPRACTICAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="COUNTRY">
+          <Key>
+            <PropertyRef Name="ID_Country" />
+          </Key>
+          <Property Name="ID_Country" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Namee" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DIRECTOR" Relationship="Self.FK__DIRECTOR__Countr__4E88ABD4" FromRole="COUNTRY" ToRole="DIRECTOR" />
+        </EntityType>
+        <EntityType Name="DIRECTOR">
+          <Key>
+            <PropertyRef Name="ID_Director" />
+          </Key>
+          <Property Name="ID_Director" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Country_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="COUNTRY" Relationship="Self.FK__DIRECTOR__Countr__4E88ABD4" FromRole="DIRECTOR" ToRole="COUNTRY" />
+        </EntityType>
+        <Association Name="FK__DIRECTOR__Countr__4E88ABD4">
+          <End Role="COUNTRY" Type="Self.COUNTRY" Multiplicity="1" />
+          <End Role="DIRECTOR" Type="Self.DIRECTOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COUNTRY">
+              <PropertyRef Name="ID_Country" />
+            </Principal>
+            <Dependent Role="DIRECTOR">
+              <PropertyRef Name="Country_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KINOPROKATPRACTICAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="COUNTRY" EntityType="Self.COUNTRY" />
+          <EntitySet Name="DIRECTOR" EntityType="Self.DIRECTOR" />
+          <AssociationSet Name="FK__DIRECTOR__Countr__4E88ABD4" Association="Self.FK__DIRECTOR__Countr__4E88ABD4">
+            <End Role="COUNTRY" EntitySet="COUNTRY" />
+            <End Role="DIRECTOR" EntitySet="DIRECTOR" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище KINOPROKATPRACTICAModelContainer" CdmEntityContainer="KINOPROKATPRACTICAEntities">
+          <EntitySetMapping Name="COUNTRY">
+            <EntityTypeMapping TypeName="KINOPROKATPRACTICAModel.COUNTRY">
+              <MappingFragment StoreEntitySet="COUNTRY">
+                <ScalarProperty Name="ID_Country" ColumnName="ID_Country" />
+                <ScalarProperty Name="Namee" ColumnName="Namee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DIRECTOR">
+            <EntityTypeMapping TypeName="KINOPROKATPRACTICAModel.DIRECTOR">
+              <MappingFragment StoreEntitySet="DIRECTOR">
+                <ScalarProperty Name="ID_Director" ColumnName="ID_Director" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KINOPROKATPRACTICAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="COUNTRY">
+    <Key>
+      <PropertyRef Name="ID_Country" />
+    </Key>
+    <Property Name="ID_Country" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Namee" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="DIRECTOR" Relationship="Self.FK__DIRECTOR__Countr__4E88ABD4" FromRole="COUNTRY" ToRole="DIRECTOR" />
+  </EntityType>
+  <EntityType Name="DIRECTOR">
+    <Key>
+      <PropertyRef Name="ID_Director" />
+    </Key>
+    <Property Name="ID_Director" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Country_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="COUNTRY" Relationship="Self.FK__DIRECTOR__Countr__4E88ABD4" FromRole="DIRECTOR" ToRole="COUNTRY" />
+  </EntityType>
+  <Association Name="FK__DIRECTOR__Countr__4E88ABD4">
+    <End Role="COUNTRY" Type="Self.COUNTRY" Multiplicity="1" />
+    <End Role="DIRECTOR" Type="Self.DIRECTOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COUNTRY">
+        <PropertyRef Name="ID_Country" />
+      </Principal>
+      <Dependent Role="DIRECTOR">
+        <PropertyRef Name="Country_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KINOPROKATPRACTICAEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="COUNTRY" EntityType="Self.COUNTRY" />
+    <EntitySet Name="DIRECTOR" EntityType="Self.DIRECTOR" />
+    <AssociationSet Name="FK__DIRECTOR__Countr__4E88ABD4" Association="Self.FK__DIRECTOR__Countr__4E88ABD4">
+      <End Role="COUNTRY" EntitySet="COUNTRY" />
+      <End Role="DIRECTOR" EntitySet="DIRECTOR" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
