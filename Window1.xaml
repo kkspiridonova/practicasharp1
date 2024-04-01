@@ -6,7 +6,13 @@
         xmlns:local="clr-namespace:practica1._3"
         mc:Ignorable="d"
         Title="Window1" Height="308" Width="415">
-    <StackPanel Margin="0,0,58,169">
+    <StackPanel Margin="0,0,58,10">
         <DataGrid CanUserAddRows="False" x:Name="CountryDgr" Margin="0,0,170,0" />
+
+        <TextBox x:Name="CountryNameTbx" Text="Название"/>
+
+        <Button Content="Добавить" Click="Button_Click"/>
+        <Button Content="Изменить" Click="Button_Click_1"/>
+        <Button Content="Удалить" Click="Button_Click_2"/>
     </StackPanel>
 </Window>

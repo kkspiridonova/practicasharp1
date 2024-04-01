@@ -5,9 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:practica1._3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="298" Width="532">
-    <StackPanel Margin="0,0,52,64">
-        <DataGrid CanUserAddRows="False" x:Name="DirectorDgr" Margin="0,0,170,0"/>
+        Title="MainWindow" Height="476" Width="498">
+    <StackPanel Margin="0,0,52,-6">
+        <DataGrid CanUserAddRows="False" x:Name="DirectorDgr" Margin="0,0,170,0" Height="162" Width="289"/>
+
+
+        <TextBox x:Name="DirectorNameTbx" Text="Имя"/>
+        <TextBox x:Name="DirectorLastNameTbx" Text="Фамилия"/>
+        <ComboBox x:Name="DirectorCountryIDCbx" DisplayMemberPath="Country_ID" SelectedValuePath="ID_Director"/>
+
+        <Button Content="Добавить" Click="Button_Click_1"/>
+        <Button Content="Изменить" Click="Button_Click_2"/>
+        <Button Content="Удалить" Click="Button_Click_3"/>
         <Button Content="Перейти на другую страницу" Height="30" Width="180" Click="Button_Click"/>
     </StackPanel>
 </Window>

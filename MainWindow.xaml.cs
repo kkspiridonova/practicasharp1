@@ -30,12 +30,37 @@ namespace practica1._3
             InitializeComponent();
 
             DirectorDgr.ItemsSource = director.GetData();//вывод таблицы в датагрид
+            DirectorCountryIDCbx.ItemsSource = director.GetData();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Window1 window = new Window1();
             window.Show();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+                director.InsertQuery(DirectorNameTbx.Text, DirectorLastNameTbx.Text, Convert.ToInt32(DirectorCountryIDCbx.SelectedValue));
+                DirectorDgr.ItemsSource = director.GetData();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            var id = Convert.ToInt32((DirectorDgr.SelectedItem as DataRowView).Row[0]);
+            director.UpdateQuery(DirectorNameTbx.Text, DirectorLastNameTbx.Text, Convert.ToInt32(DirectorCountryIDCbx.Text), id);
+            DirectorDgr.ItemsSource = director.GetData();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            if (DirectorDgr.SelectedItem != null)
+            {
+                var id = Convert.ToInt32((DirectorDgr.SelectedItem as DataRowView).Row[0]);
+                director.DeleteQuery(Convert.ToInt32(id));
+                DirectorDgr.ItemsSource = director.GetData();
+            }
+
         }
     }
 }
